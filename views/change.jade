@@ -1,0 +1,50 @@
+extends layout
+block page
+  - var menu = 'change'
+  include includes/menu
+block alert
+  include includes/alert
+block content
+  include includes/importsEditor
+  
+  div.col-md-8
+    form(action="/change", method="POST", role="form")
+      div.form-group
+        label(for="title") Назва заходу
+        input#title.form-control(name="title", type="text", placeholder="Коротка назва планованого заходу", value=title)
+      div.form-group
+        label(for="startdate") Дата початку
+        div(class="input-group date")
+          input#startdate.form-control(data-provide="datepicker", name="startdate", type="text", class="form-control", placeholder="Натисніть та оберіть дату початку", value=startdate)
+          span(class="input-group-addon")
+            i(class="glyphicon glyphicon-th")        
+        input#starttime.form-control(name="starttime", type="text", placeholder="Час початку", value=starttime)
+      div.form-group
+        label(for="enddate") Дата завершення
+        div(class="input-group date")
+          input#enddate.form-control(data-provide="datepicker", name="enddate", type="text", class="form-control", placeholder="Натисніть та оберіть дату завершення", value=enddate)
+          span(class="input-group-addon")
+            i(class="glyphicon glyphicon-th")        
+        input#endtime.form-control(name="endtime", type="text", placeholder="Час завершення", value=endtime)
+      div.form-group
+        label(for="place") Місце проведення
+        br
+        input#country.form-control.input-block-level(name="country", type="text", value=country)
+        br
+        input#place.form-control(name="place", type="text", placeholder="Адреса", value=place)
+      div.form-group
+        label(for="text") Опис заходу 
+          a(href="https://www.markdownguide.org/cheat-sheet/")
+            ="(ми підтримуємо формат Markdown)"
+        textarea#text.form-control(rows="10", type="text", name="text", placeholder="Текст анонсу заходу")
+          =text
+        input#id(type="hidden", name="id", value=_id)
+        input#slug(type="hidden", name="slug", value=slug)
+        input#published(type="hidden", name="published", value=(published)?"true":"false")
+        br
+        button#submit.btn.btn-primary(type="submit") Змінити
+  script.
+    //var text =!{JSON.stringify(text)};
+    //var simplemde = new SimpleMDE({ element: document.getElementById("text"), spellChecker: false, initialValue: text });
+    $('.input-group.date, #startdate, #enddate').datepicker({language: "uk", autoclose: true, todayHighlight: true, dateFormat: 'yyyy-mm-dd'});
+    $("#country").countrySelect({preferredCountries: ["us", "ca", "gb", "de", "it", "es", "pt", "pl", "cz"]});

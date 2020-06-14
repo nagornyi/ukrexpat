@@ -1,0 +1,41 @@
+extends layout
+block page
+  - var menu = 'postArticle'
+  include includes/menuArticles
+block alert
+  include includes/alert
+block content
+  include includes/importsEditor
+  
+  form(action="/postArticle", method="POST", role="form")
+    div.form-group
+      label(for="title") Заголовок
+      input#title.form-control(name="title", type="text", placeholder="Заголовок статті", value=title)
+    div.form-group
+      label(for="author") Автор
+      input#author.form-control(name="author", type="text", placeholder="Автор статті", value=author)
+    div.form-group
+      label(for="category") Категорія
+      select#category.form-control(name="category", selected=category)
+        option(value="Життя") Життя
+        option(value="Робота") Робота
+        option(value="Освіта") Освіта            
+    div.form-group
+      label(for="tags") Теги
+      input#tags.form-control(name="tags", type="text", placeholder="Теги, розділені комами", value=tags)
+    div.form-group
+      label(for="image") Зображення (URL)
+      input#image.form-control(name="image", type="text", placeholder="Зображення", value=image)
+    div.form-group
+      label(for="text") Текст 
+        a(href="https://www.markdownguide.org/cheat-sheet/")
+          ="(ми підтримуємо формат Markdown)"
+      textarea#text.form-control(rows="20", name="text", placeholder="Текст статті")
+        =text
+      br
+      button#submit.btn.btn-primary(type="submit") Запостити
+  script.
+    //var text =!{JSON.stringify(text)};
+    var category =!{JSON.stringify(category)};
+    if(category!=""){document.getElementById("category").value = category;}
+    //var simplemde = new SimpleMDE({ element: document.getElementById("text"), spellChecker: false, initialValue: text });

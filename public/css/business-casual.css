@@ -1,0 +1,447 @@
+/*!
+ * Start Bootstrap - Business Casual (http://startbootstrap.com/)
+ * Copyright 2013-2016 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
+ */
+
+body {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    background: url('../img/bg.jpg?v=1') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+
+.glyphicon-remove,
+.glyphicon-pause,
+.glyphicon-play {
+  cursor: pointer;
+}
+tr.unpublished {
+  color: #cec1c2;
+}
+td.action {
+  width: 20px;
+}
+div.unpublished {
+    color: #cec1c2;
+}
+div.action {
+    padding: 2px;  
+}
+/*.alert {
+  display: none;  
+}*/
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    text-transform: uppercase;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+p {
+    font-size: 1.25em;
+    line-height: 1.6;
+    color: #000;
+}
+
+p.condensed {
+    font-size: 1.25em;
+    line-height: 1.0;
+    margin: 0;
+    color: #000;
+}
+
+.responsive-area p {
+    /* Breaking long URLs and words */
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+
+    -ms-word-break: break-all;
+    /* Instead use this non-standard one: */
+    word-break: break-word;
+  
+    /* Adds a hyphen where the word breaks, if supported (No Blink) */
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+}
+
+.responsive-area ul, .responsive-area ol, .editor-preview ul, .editor-preview ol {
+    font-size: 1.25em;
+    line-height: 1.6;
+    color: #000;
+}
+
+hr {
+    max-width: 400px;
+    border-color: #999999;
+}
+
+.brand,
+.address-bar {
+    display: none;
+}
+
+.navbar-brand {
+    text-transform: uppercase;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.navbar-nav {
+    text-transform: uppercase;
+    font-weight: 400;
+    letter-spacing: 3px;
+}
+
+.img-full {
+    min-width: 100%;
+}
+
+.brand-before,
+.brand-name {
+    text-transform: capitalize;
+}
+
+.brand-before {
+    margin: 15px 0;
+}
+
+.brand-name {
+    font-family: "Parisienne","Helvetica Neue",Helvetica,Arial,sans-serif;
+    margin: 0;
+    font-size: 4em;
+}
+
+.tagline-divider {
+    margin: 15px auto 3px;
+    max-width: 250px;
+    border-color: #999999;
+}
+
+.box {
+    border-radius: 0px 0px 25px 0px;
+    margin-bottom: 20px;
+    padding: 15px 15px;
+    background: #fff;
+    background: rgba(255,255,255,0.9);
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+}
+
+.box:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.box a {
+    transition: 0.3s;
+    text-decoration: none;
+}
+
+.intro-text {
+    text-transform: uppercase;
+    font-size: 1.25em;
+    font-weight: 400;
+    letter-spacing: 1px;
+    line-height: 1.5;
+}
+
+.img-border {
+    float: none;
+    margin: 0 auto 0;
+    border: #999999 solid 1px;
+}
+
+.img-left {
+    float: none;
+    margin: 0 auto 0;
+}
+
+footer {
+    background: #fff;
+    background: rgba(255,255,255,0.9);
+}
+
+footer p {
+    margin: 0;
+    padding: 10px 0;
+}
+
+@media screen and (min-width:768px) {
+    .brand {
+        display: inherit;
+        margin: 0;
+        padding: 30px 0 10px;
+        text-align: center;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        font-family: "Josefin Slab","Helvetica Neue",Helvetica,Arial,sans-serif;
+        font-size: 5em;
+        font-weight: 700;
+        line-height: normal;
+        color: #fff;
+    }
+
+    .top-divider {
+        margin-top: 0;
+    }
+
+    .img-left {
+        float: left;
+        margin-right: 25px;
+    }
+
+    .address-bar {
+        display: inherit;
+        margin: 0;
+        padding: 0 0 40px;
+        text-align: center;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        text-transform: uppercase;
+        font-size: 1.25em;
+        font-weight: 400;
+        letter-spacing: 3px;
+        color: #fff;
+    }
+
+    .navbar {
+        border-radius: 0;
+    }
+
+    .navbar-header {
+        display: none;
+    }
+
+    .navbar {
+        min-height: 0;
+    }
+
+    .navbar-default {
+        border: none;
+        background: #fff;
+        background: rgba(255,255,255,0.9);
+    }
+
+    .nav>li>a {
+        padding: 35px;
+    }
+
+    .navbar-nav>li>a {
+        line-height: normal;
+    }
+
+    .navbar-nav {
+        display: table;
+        float: none;
+        margin: 0 auto;
+        table-layout: fixed;
+        font-size: 1.25em;
+    }
+}
+
+@media screen and (min-width:768px) {
+    .box:after {
+        content: '';
+        display: table;
+        clear: both;
+    }
+    .mobile {
+        visibility: hidden;
+        display: none;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .nomobile {
+      visibility: hidden;
+      display: none;
+    }
+  }
+
+#loader {
+  float: none;
+  margin: 0 auto;
+  margin-top: 16px;
+  position: relative;
+  clear: both;
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid blue;
+  border-right: 16px solid green;
+  border-bottom: 16px solid red;
+  border-left: 16px solid pink;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.newsImg > img {
+  display: block;
+  max-width: 100%;
+  min-width: 100%;
+  height: auto;
+}
+
+.country-select {width: 100%;}
+.country-select-input {width: 100%;}
+
+.content img {display: block; max-width: 100%; height: auto; margin-left: auto; margin-right: auto;  min-width: 50%;}
+.responsive-area h1, .responsive-area h2, .responsive-area h3, .responsive-area h4, .responsive-area h5 {text-align: center; padding-top: 15px;}
+.content .help-block {font-size: small;}
+
+#rss-feeds ul, #rss-feeds-mobile ul {padding: 0px;}
+
+.btn-countries a {margin: 2px;}
+
+.menu a {margin-top: 0px; margin-bottom: 0px;}
+
+.thumbnail {
+    position:relative;
+    overflow:hidden;    
+    padding-bottom:100%;    
+}
+.thumbnail .fitinside{
+    position:absolute;
+}
+
+.contentSection {
+    overflow: hidden;
+    text-align: center;
+}
+.contentSection:before,
+.contentSection:after {
+    background-color: #cf1414;
+    content: "";
+    display: inline-block;
+    height: 8px;
+    position: relative;
+    vertical-align: middle;
+    width: 50%;
+}
+.contentSection:before {
+    right: 0.5em;
+    margin-left: -50%;
+}
+.contentSection:after {
+    left: 0.5em;
+    margin-right: -50%;
+}
+
+@-webkit-keyframes moving-gradient {
+    0% { background-position: left bottom; }
+    100% { background-position: right bottom; }
+}
+
+.loading-bar {
+    height: 5px;
+    
+    background: -webkit-linear-gradient(
+        left,
+        #0193CD 30%,
+        #66D4E5 80%,
+        #0193CD 100%
+    ) repeat;
+    
+    -webkit-background-size: 50% 100%;
+    -webkit-animation-name: moving-gradient;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+}
+
+.loaded-bar {
+    height: 5px;
+    
+    background: -webkit-linear-gradient(
+        left,
+        #0193CD 30%,
+        #66D4E5 80%,
+        #0193CD 100%
+    ) repeat;
+}
+
+.divider-news {
+    height: 2px;
+    
+    background: -webkit-linear-gradient(
+        left,
+        #FFD000 30%,
+        #FF0000 100%
+    ) repeat;
+}
+
+.cc-compliance a:hover {
+    text-decoration: none;
+}
+
+.icon-bar {
+    background-color:dodgerblue !important;
+ }
+
+a.readmore {
+    color:#cf1414;
+    font-weight: bold;
+}
+
+a.readmore:hover {
+    color:#990e0e;
+    text-decoration: none;
+}
+
+.card {
+    background: #fff;
+    background: rgba(255,255,255,0.9);
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 100%;
+    margin-top:10px;
+    margin-bottom:20px;
+    border-radius: 0px 0px 25px 0px;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+img.card-img {
+    border-radius: 0 0 0 0;
+}
+
+.card-container {
+    padding: 2px 16px;
+}
+
+.btn {
+    transition: 0.3s;
+}
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+ }
+
+.img-center {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center; 
+}

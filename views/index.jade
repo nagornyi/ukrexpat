@@ -1,0 +1,256 @@
+extends layout
+block page
+  - var menu = 'index'  
+block content
+  include includes/importsNews
+  // Ukrexpat Index
+  div.col-sm-12
+    ins.adsbygoogle(style='display:block', data-ad-client='ca-pub-5925166783691550', data-ad-slot='8510219149', data-ad-format='auto', data-full-width-responsive='true')
+    script.
+      (adsbygoogle = window.adsbygoogle || []).push({});
+  .nomobile
+    div.col-sm-3             
+      h3.contentSection="Заходи"
+      a(href="/post")
+        .box    
+          h6= "Додати новий"          
+      each event, index in events      
+        include includes/gridEventsIndex             
+      // Ukrexpat Index Events Bottom
+      ins.adsbygoogle(style='display:block', data-ad-client='ca-pub-5925166783691550', data-ad-slot='2007950271', data-ad-format='auto', data-full-width-responsive='true')
+      script.
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    div.col-sm-6
+      .container-fluid    
+        if (articlesTop.length > 0)         
+            div.row        
+              h3.contentSection="Останні Статті"
+              each article, index in articlesTop      
+                include includes/gridArticlesIndex
+            // Ukrexpat Index
+            .row
+              ins.adsbygoogle(style='display:block', data-ad-client='ca-pub-5925166783691550', data-ad-slot='8510219149', data-ad-format='auto', data-full-width-responsive='true')
+              script.
+                  (adsbygoogle = window.adsbygoogle || []).push({});
+
+        if (articlesLife.length > 0)       
+            div.row        
+              h3.contentSection="Життя"
+              each article, index in articlesLife      
+                include includes/gridArticlesIndexPlain
+            // Ukrexpat Index
+            .row
+              ins.adsbygoogle(style='display:block', data-ad-client='ca-pub-5925166783691550', data-ad-slot='8510219149', data-ad-format='auto', data-full-width-responsive='true')
+              script.
+                  (adsbygoogle = window.adsbygoogle || []).push({});                
+        
+        if (articlesWork.length > 0)     
+            div.row      
+              h3.contentSection="Робота"  
+              each article, index in articlesWork      
+                include includes/gridArticlesIndexPlain       
+            // Ukrexpat Index
+            .row
+              ins.adsbygoogle(style='display:block', data-ad-client='ca-pub-5925166783691550', data-ad-slot='8510219149', data-ad-format='auto', data-full-width-responsive='true')
+              script.
+                  (adsbygoogle = window.adsbygoogle || []).push({});                   
+
+        if (articlesEducation.length > 0)   
+            div.row        
+              h3.contentSection="Освіта"
+              each article, index in articlesEducation      
+                include includes/gridArticlesIndexPlain
+            // Ukrexpat Index
+            .row
+              ins.adsbygoogle(style='display:block', data-ad-client='ca-pub-5925166783691550', data-ad-slot='8510219149', data-ad-format='auto', data-full-width-responsive='true')
+              script.
+                  (adsbygoogle = window.adsbygoogle || []).push({});                
+
+        if (articlesOther.length > 0)     
+            div.row        
+              h3.contentSection="Інше"
+              each article, index in articlesOther     
+                include includes/gridArticlesIndexPlain
+
+    div.col-sm-3 
+      h3.contentSection="Новини"
+      .box
+        #loading-bar.loaded-bar
+        #loader(style="display: none;")
+        #rss-feeds
+        #rss-feeds-loader(style="display: none;")       
+      // Ukrexpat Index News Bottom
+      ins.adsbygoogle(style='display:block', data-ad-client='ca-pub-5925166783691550', data-ad-slot='3380085153', data-ad-format='auto', data-full-width-responsive='true')
+      script.
+        (adsbygoogle = window.adsbygoogle || []).push({});
+
+  .mobile
+    if (articlesTop.length > 0)    
+      div.row        
+        h4.contentSection="Останні Статті"
+        each article, index in articlesTop      
+          include includes/gridArticlesIndex
+      // Ukrexpat Index
+      .row
+        ins.adsbygoogle(style='display:block', data-ad-client='ca-pub-5925166783691550', data-ad-slot='8510219149', data-ad-format='auto', data-full-width-responsive='true')
+        script.
+            (adsbygoogle = window.adsbygoogle || []).push({});
+
+    if (articlesLife.length > 0)    
+      div.row        
+        h4.contentSection="Життя"
+        each article, index in articlesLife      
+          include includes/gridArticlesIndexPlain
+      // Ukrexpat Index
+      .row
+        ins.adsbygoogle(style='display:block', data-ad-client='ca-pub-5925166783691550', data-ad-slot='8510219149', data-ad-format='auto', data-full-width-responsive='true')
+        script.
+            (adsbygoogle = window.adsbygoogle || []).push({});
+    
+    if (articlesWork.length > 0)        
+      div.row      
+        h4.contentSection="Робота"  
+        each article, index in articlesWork      
+          include includes/gridArticlesIndexPlain          
+      // Ukrexpat Index
+      .row
+        ins.adsbygoogle(style='display:block', data-ad-client='ca-pub-5925166783691550', data-ad-slot='8510219149', data-ad-format='auto', data-full-width-responsive='true')
+        script.
+            (adsbygoogle = window.adsbygoogle || []).push({});
+
+    if (articlesEducation.length > 0)       
+      div.row        
+        h4.contentSection="Освіта"
+        each article, index in articlesEducation      
+          include includes/gridArticlesIndexPlain
+      // Ukrexpat Index
+      .row
+        ins.adsbygoogle(style='display:block', data-ad-client='ca-pub-5925166783691550', data-ad-slot='8510219149', data-ad-format='auto', data-full-width-responsive='true')
+        script.
+            (adsbygoogle = window.adsbygoogle || []).push({});
+
+    if (articlesOther.length > 0)     
+      div.row        
+        h4.contentSection="Інше"
+        each article, index in articlesOther     
+          include includes/gridArticlesIndexPlain
+
+    div.row
+      h4.contentSection="Заходи"
+      .mobile.box
+        h6
+          a(href="/post")= "Додати новий"    
+      each event, index in events
+        include includes/gridEventsIndex
+      // Ukrexpat Index Events Bottom
+      ins.adsbygoogle(style='display:block', data-ad-client='ca-pub-5925166783691550', data-ad-slot='2007950271', data-ad-format='auto', data-full-width-responsive='true')
+      script.
+        (adsbygoogle = window.adsbygoogle || []).push({});
+
+    div.row 
+      h4.contentSection="Новини"  
+      .box  
+        #loading-bar-mobile.loaded-bar
+        #loader-mobile(style="display: none;")      
+        #rss-feeds-mobile
+        #rss-feeds-loader(style="display: none;")
+      // Ukrexpat Index News Bottom
+      ins.adsbygoogle(style='display:block', data-ad-client='ca-pub-5925166783691550', data-ad-slot='3380085153', data-ad-format='auto', data-full-width-responsive='true')
+      script.
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    
+  script.
+    $(".mobile.box").click(function() {window.location = $(this).find("a").attr("href"); return false;});
+    // more rss options here: https://github.com/sdepold/jquery-rss
+    /*global jQuery*/
+    function showSpinner() {
+      document.getElementById("loader").style.display = "";
+      document.getElementById("loader-mobile").style.display = "";
+    }
+    function removeSpinner() {
+      document.getElementById("loader").style.display = "none";
+      document.getElementById("loader-mobile").style.display = "none";
+    }
+    function showBar() {
+      document.getElementById("loading-bar").className = "loading-bar";
+      document.getElementById("loading-bar-mobile").className = "loading-bar";
+    }
+    function removeBar() {
+      document.getElementById("loading-bar").className = "loaded-bar";
+      document.getElementById("loading-bar-mobile").className = "loaded-bar";
+    }    
+    function now() {return+new Date}
+    jQuery(function($) {
+    function showNewsFeed(url) {
+      try {
+        var entry = JSON.parse(localStorage.getItem("homenews"));
+        if(entry.ttl && entry.ttl + entry.now > now()) {
+          return;
+        } else {
+          showBar();
+        }
+      } catch (e) {}      
+      var template;
+      var htmlTags = ["doctype", "html", "head", "title", "base", "link", "meta", "style", "script", "noscript", "body", "article", "nav", "aside", "section", "header", "footer", "h1-h6", "hgroup", "address", "p", "hr", "pre", "blockquote", "ol", "ul", "li", "dl", "dt", "dd", "figure", "figcaption", "div", "table", "caption", "thead", "tbody", "tfoot", "tr", "th", "td", "col", "colgroup", "form", "fieldset", "legend", "label", "input", "button", "select", "datalist", "optgroup", "option", "textarea", "keygen", "output", "progress", "meter", "details", "summary", "command", "menu", "del", "ins", "img", "iframe", "embed", "object", "param", "video", "audio", "source", "canvas", "track", "map", "area", "a", "em", "strong", "i", "b", "u", "s", "small", "abbr", "q", "cite", "dfn", "sub", "sup", "time", "code", "kbd", "samp", "var", "mark", "bdi", "bdo", "ruby", "rt", "rp", "span", "br", "wbr"];
+      template='<h6><a href="{url}">{title}</a><br><small>{date}</small></h6>';     
+      $("#rss-feeds-loader").rss(url,
+      {
+        limit: 50,
+        ssl: true,
+        host: 'shielded-bastion-82939.herokuapp.com',
+        dateFormat: 'MMMM Do, YYYY',
+        dateLocale: 'uk',
+        error: function(){
+          removeBar();
+          removeSpinner();
+        },
+        tokens: {
+          brief: function(entry, tokens) {
+            var delimiter = '</p>'
+            var end = 2
+            var result = entry.content
+            .split(delimiter).slice(0, end)
+            .join(delimiter)
+            .replace(/<script[\\\r\\\s\S]*<\/script>/mgi, '')            
+            .replace(/<\/?[^>]+>/gi, '')
+            //.replace(/<img.*>/mgi, '')
+            for(var i = 0; i < htmlTags.length; i++) {
+              result = result.replace(new RegExp('<' + htmlTags[i], 'gi'), '')
+            }
+            return result
+          }
+        },
+        entryTemplate: template
+      }, function callback(){
+        removeBar();
+        removeSpinner();    
+        localStorage.setItem('homenews', JSON.stringify({
+          ttl   : 1800000,
+          now   : now(),
+          value : $("#rss-feeds-loader").html()
+        }));
+        var entry = JSON.parse(localStorage.getItem("homenews"));
+        $("#rss-feeds").html(entry.value);
+        $("#rss-feeds-mobile").html(entry.value);
+      }
+      )
+    };
+    $(document).ready(function() {
+      $("#rss-feeds-loader").empty();
+      var newsEntry = localStorage.getItem("homenews");
+      if (newsEntry === null || newsEntry.length === 0) {
+        showSpinner();
+      } else {
+        try {
+          var cachedNews = JSON.parse(newsEntry);
+          $("#rss-feeds").html(cachedNews.value);
+          $("#rss-feeds-mobile").html(cachedNews.value);          
+        } catch (e) {
+          $("#rss-feeds").html(newsEntry);
+          $("#rss-feeds-mobile").html(newsEntry);
+          showBar();
+        }
+      }
+      showNewsFeed("https://feeds.feedburner.com/vidiaua");
+    });
+    });

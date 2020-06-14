@@ -1,0 +1,18 @@
+a(href="/events/#{event.slug}").nomobile
+    .box    
+        h6= event.title
+            br
+            small= "Початок: "+event.startdate+" "+event.starttime
+            br
+            small= "Завершення: "+event.enddate+" "+event.endtime
+            br
+            small= "Країна: "+event.country
+    
+.mobile.box
+    h6
+        a(href="/events/#{event.slug}")= event.title
+    p
+    small.help-block(font-size="smaller")= "Початок: "+event.startdate+" "+event.starttime
+    small.help-block(font-size="smaller")= "Завершення: "+event.enddate+" "+event.endtime
+    small.help-block(font-size="smaller")= "Країна: "+event.country
+    

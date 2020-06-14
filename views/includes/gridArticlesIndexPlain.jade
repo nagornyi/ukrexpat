@@ -1,0 +1,14 @@
+- var teaser= article.text.substr(0, 500).replace(/\(http.*\)|#|\*|_|\[|\]|>/g,'').substr(0, 140).trim()
+a(href="/articles/#{article.slug}").nomobile
+    div.box
+        h4
+            b= article.title
+        h4
+            small.help-block= article.date               
+        p= teaser + '... '
+.mobile.box    
+    small.help-block(font-size="smaller")= article.date
+    h6
+        a(href="/articles/#{article.slug}")= article.title            
+    div(font-size="smaller")= teaser + '... '
+    p

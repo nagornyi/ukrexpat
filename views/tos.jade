@@ -1,0 +1,22 @@
+extends layout
+block page
+  - var menu = 'tos'
+block content
+  div.row
+    div.nomobile
+      h3.contentSection#contents="Умови Використання"
+      div.box
+        include includes/tosContents
+      h3.contentSection#forum="Правила Форуму"
+      div.box
+        include includes/tosForum
+
+    div.mobile
+      h5.contentSection#contents="Умови Використання"
+      div.box
+        small(font-size="smaller")
+          include includes/tosContents
+      h5.contentSection#forum="Правила Форуму"
+      div.box
+        small(font-size="smaller")
+          include includes/tosForum

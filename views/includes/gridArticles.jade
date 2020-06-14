@@ -1,0 +1,23 @@
+each article, index in articles
+    - var teaser= article.text.substr(0, 500).replace(/\(http.*\)|#|\*|_|\[|\]|>/g,'').substr(0, 140).trim()
+    div.nomobile.col-sm-6
+        a(href="/articles/#{article.slug}")
+            article.card
+                img.card-img(src=article.image, alt='Picture', style='width:100%')
+                .card-container
+                    h4
+                        b= article.title
+                    h4
+                        small.help-block= article.date+" | "+article.category
+                    p= teaser + '...'
+    .mobile.box
+        small.help-block(font-size="smaller")= article.date + " | " + article.category
+        h6
+            a(href="/articles/#{article.slug}")= article.title        
+        div(font-size="smaller")= teaser + '... '
+        p
+        img(class="img img-responsive full-width", src=article.image)
+        p
+#articles
+script.
+    $(".mobile.box").click(function() {window.location = $(this).find("a").attr("href"); return false;});

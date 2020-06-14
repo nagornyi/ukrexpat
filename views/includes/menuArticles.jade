@@ -1,0 +1,40 @@
+if (admin)
+  .row
+    .box  
+      .col-lg-12
+        .menu
+          .row
+            div(class=(menu === 'article')?'active btn-group':'hidden')
+              a(class="nomobile btn btn-default text-uppercase" href='/articles') Всі статті
+              a(class="nomobile btn btn-default text-uppercase" href='/articles/category/#{category}') Категорія: #{category}
+              a(class="mobile btn btn-sm btn-default text-uppercase" href='/articles') Всі статті
+              a(class="mobile btn btn-sm btn-default text-uppercase" href='/articles/category/#{category}') Категорія: #{category}     
+            div(class=(menu === 'postArticle' || menu === 'adminArticle' || menu === 'changeArticle')?'active btn-group':'hidden')
+              a(class="nomobile btn btn-default text-uppercase" href='/articles') Всі статті              
+              a(class="mobile btn btn-sm btn-default text-uppercase" href='/articles') Всі статті
+            div(class=(menu === 'articles')?'active btn-group':'hidden')
+              a(class="nomobile btn btn-default text-uppercase" href="/postArticle") Додати нову
+              a(class="mobile btn btn-sm btn-default text-uppercase" href="/postArticle") Додати нову
+              a(class="nomobile btn btn-default text-uppercase" href="/adminArticle") Керування
+              a(class="mobile btn btn-sm btn-default text-uppercase" href="/adminArticle") Керування
+              a(class="nomobile btn btn-default text-uppercase" href="/logout") Вийти
+              a(class="mobile btn btn-sm btn-default text-uppercase" href="/logout") Вийти
+else
+  .row(class=(menu === 'article')?'active':'hidden')
+    .box  
+      .col-lg-12
+        .menu
+          .row
+            div.btn-group
+              a(class="nomobile btn btn-default text-uppercase" href='/articles') Всі статті
+              a(class="nomobile btn btn-default text-uppercase" href='/articles/category/#{category}') Категорія: #{category}
+              a(class="mobile btn btn-sm btn-default text-uppercase" href='/articles') Всі статті
+              a(class="mobile btn btn-sm btn-default text-uppercase" href='/articles/category/#{category}') Категорія: #{category}
+  .row(class=(menu === 'articles' && title != "Всі Статті")?'active':'hidden')
+    .box  
+      .col-lg-12
+        .menu
+          .row
+            div.btn-group
+              a(class="nomobile btn btn-default text-uppercase" href='/articles') Всі статті            
+              a(class="mobile btn btn-sm btn-default text-uppercase" href='/articles') Всі статті              
