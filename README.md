@@ -1,8 +1,9 @@
-ukrexpat.com - website for Ukrainian expats and diaspora
+Web application that allows you to create articles and events (CMS), originally developed for Ukrainian expats website.
 
-# Local setup
+Setup
+=====
 
-Make sure mongodb service is running.
+Make sure mongodb service is running. Then execute commands:
 
 ```sh
 cd ./db
