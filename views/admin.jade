@@ -1,0 +1,26 @@
+extends layout
+block page
+  - var menu = 'admin'
+  - var rightNow = new Date();
+  include includes/menu
+block alert
+  include includes/alert
+block content
+  script.
+    var maxPages= #{maxPages};
+    var srcPages= '/eventsPageAdmin/';
+    var anchorPages = '#eventsAnchor';
+    var offsetPages = 10;
+    var tag= "#{tag}";
+    var category= "#{category}";
+    var country= "#{country}";
+  script(src='/js/paging.js?v=#{appVersion}')
+  script(src='/js/admin.js?v=#{appVersion}')
+  div.admin  
+    if (events.length === 0 )
+      p
+        | Немає заходів. Додайте 
+        a(href="/post") новий
+        |.
+    else
+      include includes/gridEventsAdmin

@@ -1,0 +1,38 @@
+.row
+  .box
+    .col-lg-12    
+      .menu
+        .row
+          if (admin)
+            div(class=(menu === 'event')?'active btn-group':'hidden')
+              a(class="nomobile btn btn-default text-uppercase" href='/events') Всі заходи
+              a(class="nomobile btn btn-default text-uppercase" href='/events/country/#{country}') #{country}
+              a(class="mobile btn btn-sm btn-default text-uppercase" href='/events') Всі заходи
+              a(class="mobile btn btn-sm btn-default text-uppercase" href='/events/country/#{country}') #{country}
+            div(class=(menu === 'post' || menu === 'admin' || menu === 'change')?'active btn-group':'hidden')
+              a(class="nomobile btn btn-default text-uppercase" href='/events') Всі заходи
+              a(class="mobile btn btn-sm btn-default text-uppercase" href='/events') Всі заходи
+            div(class=(menu === 'events')?'active btn-group':'hidden')
+              a(class="nomobile btn btn-default text-uppercase" href="/post") Додати новий
+              a(class="mobile btn btn-sm btn-default text-uppercase" href="/post") Додати новий
+              a(class="nomobile btn btn-default text-uppercase" href="/admin") Керування
+              a(class="mobile btn btn-sm btn-default text-uppercase" href="/admin") Керування
+              a(class="nomobile btn btn-default text-uppercase" href="/logout") Вийти
+              a(class="mobile btn btn-sm btn-default text-uppercase" href="/logout") Вийти
+          else
+            div(class=(menu === 'event')?'active btn-group':'hidden')
+              a(class="nomobile btn btn-default text-uppercase" href='/events') Всі заходи
+              a(class="nomobile btn btn-default text-uppercase" href='/events/country/#{country}') #{country}
+              a(class="mobile btn btn-sm btn-default text-uppercase" href='/events') Всі заходи
+              a(class="mobile btn btn-sm btn-default text-uppercase" href='/events/country/#{country}') #{country}
+            div(class=(menu === 'post' || menu === 'admin' || menu === 'change')?'active btn-group':'hidden')
+              a(class="nomobile btn btn-default text-uppercase" href='/events') Всі заходи              
+              a(class="mobile btn btn-sm btn-default text-uppercase" href='/events') Всі заходи
+            div(class=(menu === 'events' && title != "Всі заходи")?'active btn-group':'hidden')
+              a(class="nomobile btn btn-default text-uppercase" href='/events') Всі заходи
+              a(class="mobile btn btn-sm btn-default text-uppercase" href='/events') Всі заходи
+              a(class="nomobile btn btn-default text-uppercase" href="/post") Додати новий
+              a(class="mobile btn btn-sm btn-default text-uppercase" href="/post") Додати новий
+            div(class=(menu === 'events' && title === "Всі заходи")?'active btn-group':'hidden')
+              a(class="nomobile btn btn-default text-uppercase" href="/post") Додати новий
+              a(class="mobile btn btn-sm btn-default text-uppercase" href="/post") Додати новий

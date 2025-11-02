@@ -1,0 +1,56 @@
+doctype html
+html
+  head
+    - if (typeof(title) !== 'undefined'){
+      title= title + " - " + appTitle
+    - }
+    - else {
+      title= appTitle
+    - }
+    include includes/imports        
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    script.
+      (adsbygoogle = window.adsbygoogle || []).push({
+      google_ad_client: "ca-pub-5925166783691550",
+      enable_page_level_ads: true
+      });
+    include includes/cookieConsent
+  body
+    #wrap
+      .brand ukrexpat.com
+      .address-bar= appTitle
+      nav.navbar.navbar-light(role='navigation' style="background-color: #e3f2fd;")
+        .container
+          .navbar-header
+            button.navbar-toggle(type='button', data-toggle='collapse', data-target='#bs-example-navbar-collapse-1')
+              span.sr-only Навігація                
+              span.icon-bar            
+              span.icon-bar                
+              span.icon-bar
+            a.navbar-brand(href='/')
+              span(style="color:DodgerBlue;") ukrexpat
+                span(style="color:Orange;") .com
+          #bs-example-navbar-collapse-1.collapse.navbar-collapse
+            ul.nav.navbar-nav
+              li
+                a(href='/') Домівка
+              li
+                a(href='/articles') Статті                  
+              //- li
+              //-   a(href='/news') Новини        
+              li
+                a(href='/events') Заходи               
+              li
+                a(href='https://forum.ukrexpat.com') Спільнота
+
+      .container
+        block page      
+        block alert          
+        .row
+          .box
+            .col-lg-12
+              .content
+                block content
+
+    block footer
+      include includes/globalFooter

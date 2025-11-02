@@ -1,0 +1,274 @@
+extends layout
+block page 
+  - var menu = 'news'
+block content
+  include includes/importsNews
+  h3.nomobile.contentSection Oстанні події
+  h4.mobile.contentSection Oстанні події
+  h2.btn-countries
+    a#all-feed.btn.btn-success.btn-sm Всі країни
+    a#canada-feed.btn.btn-default.btn-sm Канада
+    a#usa-feed.btn.btn-default.btn-sm США
+    a#britain-feed.btn.btn-default.btn-sm Велика Британія
+    a#ireland-feed.btn.btn-default.btn-sm Ірландія
+    a#australia-feed.btn.btn-default.btn-sm Австралія
+    a#spain-feed.btn.btn-default.btn-sm Іспанія
+    a#italy-feed.btn.btn-default.btn-sm Італія
+    a#portugal-feed.btn.btn-default.btn-sm Португалія
+    a#france-feed.btn.btn-default.btn-sm Франція
+    a#germany-feed.btn.btn-default.btn-sm Німеччина
+    a#austria-feed.btn.btn-default.btn-sm Австрія
+    a#belgium-feed.btn.btn-default.btn-sm Бельгія
+    a#netherlands-feed.btn.btn-default.btn-sm Нідерланди
+    a#switzerland-feed.btn.btn-default.btn-sm Швейцарія
+    a#greece-feed.btn.btn-default.btn-sm Греція
+    a#sweden-feed.btn.btn-default.btn-sm Швеція
+    a#finland-feed.btn.btn-default.btn-sm Фінляндія
+    a#poland-feed.btn.btn-default.btn-sm Польща
+    a#estonia-feed.btn.btn-default.btn-sm Естонія
+    a#latvia-feed.btn.btn-default.btn-sm Латвія
+    a#lithuania-feed.btn.btn-default.btn-sm Литва
+    a#georgia-feed.btn.btn-default.btn-sm Грузія
+    a#israel-feed.btn.btn-default.btn-sm Ізраїль
+    a#turkey-feed.btn.btn-default.btn-sm Туреччина
+    a#cyprus-feed.btn.btn-default.btn-sm Кіпр
+    a#jordan-feed.btn.btn-default.btn-sm Йорданія
+    a#uae-feed.btn.btn-default.btn-sm ОАЕ
+    a#lebanon-feed.btn.btn-default.btn-sm Ліван
+    a#china-feed.btn.btn-default.btn-sm Китай
+    a#japan-feed.btn.btn-default.btn-sm Японія
+    a#meksyka-feed.btn.btn-default.btn-sm Мексика
+    a#sar-feed.btn.btn-default.btn-sm ПАР
+    a#india-feed.btn.btn-default.btn-sm Індія
+
+  .row
+    div.box
+      #loading-bar.loaded-bar
+      #loader(style="display: none;")
+      #rss-feeds
+      div.hidden-loaders
+  
+  script.
+    // more rss options here: https://github.com/sdepold/jquery-rss
+    /*global jQuery*/
+    var currentFeed = "all-feed";
+    function updateCurrentView(btnId) {      
+      removeBar();
+      removeSpinner();
+      var prevBtn = document.getElementById(currentFeed);
+      if(prevBtn.classList.contains('btn-success')){
+        prevBtn.classList.remove('btn-success');
+        prevBtn.classList.add('btn-default');
+        prevBtn.removeAttribute("disabled");
+      }      
+      var actBtn = document.getElementById(btnId);
+      if(actBtn.classList.contains('btn-default')){
+        actBtn.classList.remove('btn-default');
+        actBtn.classList.add('btn-success');
+        actBtn.setAttribute("disabled", true);
+      }
+      currentFeed = btnId;                 
+      var newsEntry = localStorage.getItem(btnId); 
+      if (newsEntry === null || newsEntry.length === 0) {
+        $("#rss-feeds").empty();
+        showSpinner();
+      } else {
+        try {
+          var cachedNews = JSON.parse(newsEntry);
+          $("#rss-feeds").html(cachedNews.value);          
+        } catch (e) {
+          $("#rss-feeds").html(newsEntry);
+          showBar();
+        }
+      }     
+      var loaderCont = $("#rss-feeds-loader-"+btnId);
+      if(loaderCont.length !== 0) {
+        loaderCont.empty();
+      }      
+    }
+    function showSpinner() {
+      document.getElementById("loader").style.display = "";
+    }
+    function removeSpinner() {
+      document.getElementById("loader").style.display = "none";
+    }
+    function showBar() {
+      document.getElementById("loading-bar").className = "loading-bar";
+    }
+    function removeBar() {
+      document.getElementById("loading-bar").className = "loaded-bar";
+    }
+    function appendFeedLoaderContainer(btnId){
+      if($("#rss-feeds-loader-"+btnId).length == 0) {
+        var loaderElement = "'rss-feeds-loader-"+btnId+"'";
+        $('.hidden-loaders').append("<div id="+loaderElement+" style='display: none;'/>");
+      }
+    }
+    function now() {return+new Date}
+    jQuery(function($) {
+    function showNewsFeed(url, provider, btnId) {      
+      var template;
+      var htmlTags = ["doctype", "html", "head", "title", "base", "link", "meta", "style", "script", "noscript", "body", "article", "nav", "aside", "section", "header", "footer", "h1-h6", "hgroup", "address", "p", "hr", "pre", "blockquote", "ol", "ul", "li", "dl", "dt", "dd", "figure", "figcaption", "div", "table", "caption", "thead", "tbody", "tfoot", "tr", "th", "td", "col", "colgroup", "form", "fieldset", "legend", "label", "input", "button", "select", "datalist", "optgroup", "option", "textarea", "keygen", "output", "progress", "meter", "details", "summary", "command", "menu", "del", "ins", "img", "iframe", "embed", "object", "param", "video", "audio", "source", "canvas", "track", "map", "area", "a", "em", "strong", "i", "b", "u", "s", "small", "abbr", "q", "cite", "dfn", "sub", "sup", "time", "code", "kbd", "samp", "var", "mark", "bdi", "bdo", "ruby", "rt", "rp", "span", "br", "wbr"];
+      if(provider=="vidia"){
+        template='<h2 class="nomobile intro-text text-center">{title}<br><small>{date}</small></h2><h6 class="mobile">{title}<br><small>{date}</small></h6><div class="nomobile text-center"><a href="{url}" class="btn btn-info btn-sm">Джерело: Vidia.ua</a></div><div class="mobile"><a href="{url}" class="btn btn-info btn-xs">Джерело: Vidia.ua</a></div><p></p><p><div class="nomobile">{brief}</div><small class="mobile">{brief}</small></p><div class="divider-news"></div>';
+      } else if(provider=="global") {
+        template='<h2 class="nomobile intro-text text-center">{title}<br><small>{date}</small></h2><h6 class="mobile">{title}<br><small>{date}</small></h6><div class="nomobile text-center"><a href="{url}" class="btn btn-info btn-sm">Джерело: Global Ukraine</a></div><div class="mobile"><a href="{url}" class="btn btn-info btn-xs">Джерело: Global Ukraine</a></div><p></p><p><div class="nomobile">{brief}</div><small class="mobile">{brief}</small></p><div class="divider-news"></div>';
+      }
+      updateCurrentView(btnId);
+      try {
+        var entry = JSON.parse(localStorage.getItem(btnId));
+        if(entry.ttl && entry.ttl + entry.now > now()) {
+          return;
+        } else {
+          showBar();
+        }
+      } catch (e) {}
+      appendFeedLoaderContainer(btnId);
+      $("#rss-feeds-loader-"+btnId).rss(url,
+      {
+        limit: 30,
+        ssl: true,
+        host: 'shielded-bastion-82939.herokuapp.com',
+        dateFormat: 'MMMM Do, YYYY',
+        dateLocale: 'uk',
+        error: function(){
+          removeBar();
+          removeSpinner();
+        },
+        tokens: {
+          brief: function(entry, tokens) {
+            var delimiter = '</p>'
+            var end = 4
+            var result = entry.content
+            .split(delimiter).slice(0, end)
+            .join(delimiter)
+            .replace(/<script[\\\r\\\s\S]*<\/script>/mgi, '')            
+            .replace(/<\/?[^>]+>/gi, '')
+            //.replace(/<img.*>/mgi, '')
+            for(var i = 0; i < htmlTags.length; i++) {
+              result = result.replace(new RegExp('<' + htmlTags[i], 'gi'), '')
+            }
+            return result
+          }
+        },
+        entryTemplate: template
+      }, function callback(){
+        if(btnId == currentFeed){
+          removeBar();
+          removeSpinner();
+          localStorage.setItem(btnId, JSON.stringify({
+            ttl   : 1800000,
+            now   : now(),
+            value : $("#rss-feeds-loader-"+btnId).html()
+          }));
+          var entry = JSON.parse(localStorage.getItem(btnId));
+          $("#rss-feeds").html(entry.value);
+        }
+      })
+    };
+    $(document).ready(function() {    
+      showNewsFeed("https://feeds.feedburner.com/vidiaua", "vidia", currentFeed);
+    });
+    $('#all-feed').click(function(){
+      showNewsFeed("https://feeds.feedburner.com/vidiaua", "vidia", this.id);
+    });
+    $('#germany-feed').click(function(){
+      showNewsFeed("http://global-ukraine.org/category/nimechchyna/feed", "global", this.id);
+    });
+    $('#greece-feed').click(function(){
+      showNewsFeed("http://global-ukraine.org/category/gretsiya/feed", "global", this.id);
+    });
+    $('#israel-feed').click(function(){
+      showNewsFeed("http://global-ukraine.org/category/izrayil/feed", "global", this.id);
+    });
+    $('#japan-feed').click(function(){
+      showNewsFeed("http://global-ukraine.org/category/yaponiya/feed", "global", this.id);
+    });
+    $('#britain-feed').click(function(){
+      showNewsFeed("http://global-ukraine.org/category/obyednane-korolivstvo/feed", "global", this.id);
+    });
+    $('#usa-feed').click(function(){
+      showNewsFeed("http://global-ukraine.org/category/ssha/feed", "global", this.id);
+    });
+    $('#canada-feed').click(function(){
+      showNewsFeed("http://global-ukraine.org/category/kanada/feed", "global", this.id);
+    });
+    $('#spain-feed').click(function(){
+      showNewsFeed("http://global-ukraine.org/category/ispaniya/feed", "global", this.id);
+    });
+    $('#italy-feed').click(function(){
+      showNewsFeed("http://global-ukraine.org/category/italiya/feed", "global", this.id);
+    });
+    $('#portugal-feed').click(function(){
+      showNewsFeed("http://global-ukraine.org/category/portugaliya/feed", "global", this.id);
+    });
+    $('#france-feed').click(function(){
+      showNewsFeed("http://global-ukraine.org/category/frantsiya/feed", "global", this.id);
+    });
+    $('#poland-feed').click(function(){
+      showNewsFeed("http://global-ukraine.org/category/polshha/feed/", "global", this.id);
+    });
+    $('#sweden-feed').click(function(){
+      showNewsFeed("http://global-ukraine.org/category/shvetsiya/feed/", "global", this.id);
+    });
+    $('#finland-feed').click(function(){
+      showNewsFeed("http://global-ukraine.org/category/finlyandiya/feed/", "global", this.id);
+    });
+    $('#estonia-feed').click(function(){
+      showNewsFeed("http://global-ukraine.org/category/estoniya/feed/", "global", this.id);
+    });
+    $('#lithuania-feed').click(function(){
+      showNewsFeed("http://global-ukraine.org/category/lytva/feed/", "global", this.id);
+    });
+    $('#netherlands-feed').click(function(){
+      showNewsFeed("http://global-ukraine.org/category/niderlandy/feed/", "global", this.id);
+    });
+    $('#china-feed').click(function(){
+      showNewsFeed("http://global-ukraine.org/category/kytaj/feed/", "global", this.id);
+    });
+    $('#georgia-feed').click(function(){
+      showNewsFeed("http://global-ukraine.org/category/gruziya/feed/", "global", this.id);
+    });
+    $('#meksyka-feed').click(function(){
+      showNewsFeed("http://global-ukraine.org/category/meksyka/feed/", "global", this.id);
+    });
+    $('#australia-feed').click(function(){
+      showNewsFeed("http://global-ukraine.org/category/avstraliya/feed/", "global", this.id);
+    });
+    $('#austria-feed').click(function(){
+      showNewsFeed("http://global-ukraine.org/category/avstriya/feed/", "global", this.id);
+    });
+    $('#belgium-feed').click(function(){
+      showNewsFeed("http://global-ukraine.org/category/belgiya/feed/", "global", this.id);
+    });
+    $('#ireland-feed').click(function(){
+      showNewsFeed("http://global-ukraine.org/category/irlandiya/feed/", "global", this.id);
+    });
+    $('#latvia-feed').click(function(){
+      showNewsFeed("http://global-ukraine.org/category/latviya/feed/", "global", this.id);
+    });
+    $('#sar-feed').click(function(){
+      showNewsFeed("http://global-ukraine.org/category/pivdenna-afrykanska-respublika/feed/", "global", this.id);
+    });
+    $('#turkey-feed').click(function(){
+      showNewsFeed("http://global-ukraine.org/category/turechchyna/feed/", "global", this.id);
+    });
+    $('#switzerland-feed').click(function(){
+      showNewsFeed("http://global-ukraine.org/category/shvejtsariya/feed/", "global", this.id);
+    });
+    $('#india-feed').click(function(){
+      showNewsFeed("http://global-ukraine.org/category/indiya/feed/", "global", this.id);
+    });
+    $('#cyprus-feed').click(function(){
+      showNewsFeed("http://global-ukraine.org/category/kipr/feed/", "global", this.id);
+    });
+    $('#jordan-feed').click(function(){
+      showNewsFeed("http://global-ukraine.org/category/jordaniya/feed/", "global", this.id);
+    });
+    $('#uae-feed').click(function(){
+      showNewsFeed("http://global-ukraine.org/category/oae/feed/", "global", this.id);
+    });
+    $('#lebanon-feed').click(function(){
+      showNewsFeed("http://global-ukraine.org/category/livan/feed/", "global", this.id);
+    });
+    });

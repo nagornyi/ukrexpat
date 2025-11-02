@@ -1,0 +1,20 @@
+extends layout
+block page
+  - var menu = 'login'  
+block alert
+  include includes/alert
+block content
+  script(src="https://www.google.com/recaptcha/api.js")
+
+  .col-md-4.col-md-offset-4
+    h3 Адміністративний доступ
+    div
+      form(action="/login", method="POST")
+        p
+          input.form-control(name="username", type="text", placeholder="Ім'я користувача")
+        p
+          input.form-control(name="password", type="password", placeholder="Пароль")
+        p
+          div.g-recaptcha(data-sitekey="mykey" data-size="compact")
+        p
+          button.btn.btn-lg.btn-primary.btn-block(type="submit") Вхід

@@ -1,0 +1,44 @@
+extends layout
+block page 
+  - var menu = 'events'
+  include includes/menu    
+  //- - var thisYear = ((new Date()).getFullYear())
+  //- - var nextYear = (thisYear+1)
+  //- - var laterYear = "Пізніше"
+  //- - var thisYearEvents = 0
+  //- - var nextYearEvents = 0
+  //- - var laterEvents = 0  
+block content
+  script.
+    var maxPages= #{maxPages};
+    var srcPages= '/eventsPage/';
+    var anchorPages = '#events';
+    var offsetPages = 100;
+    var tag= "#{tag}";
+    var category= "#{category}";
+    var country= "#{country}";
+  script(src='/js/paging.js?v=#{appVersion}')
+  div.row
+    h3.nomobile.contentSection #{title}
+    h4.mobile.contentSection #{title}
+    include includes/gridEventCountries
+    p
+    include includes/gridEvents
+    
+    //- each event, index in events
+    //-   if (event.date.split(".")[2] =date= nextYear.toString())
+    //-     - nextYearEvents++
+    //- if (nextYearEvents > 0)         date
+    //-   h3.contentSection=nextYear+" рdateк"      
+    //-   each event, index in events   date
+    //-     if (event.date.split(".")[2] === nextYear.toString())
+    //-       include includes/gridEvents
+    
+    //- each event, index in events
+    //-   if (event.date.split(".")[2] > nextYear.toString())
+    //-     - laterEvents++
+    //- if (laterEvents > 0)           
+    //-   h3.contentSection=laterYear      
+    //-   each event, index in events      
+    //-     if (event.date.split(".")[2] > nextYear.toString())
+    //-       include includes/gridEvents

@@ -1,0 +1,20 @@
+each article, index in articles
+    - var teaser= article.text.substr(0, 500).replace(/\(http.*\)|#|\*|_|\[|\]|>/g,'').substr(0, 140).trim()
+    div(data-id="#{article._id}", class=(!article.published)?'box row unpublished':'box row')
+        div.col-sm-1.action
+            button.btn.btn-danger.btn-sm.remove.btn-block(type="button")
+                span.glyphicon.glyphicon-remove(title="Remove")
+            button.btn.btn-warning.btn-sm.edit.btn-block(type="button", onclick="window.open('changeArticle/#{article.slug}', '_self');")
+                span.glyphicon.glyphicon-edit(title="Change")
+            button.btn.btn-success.btn-sm.publish.btn-block(type="button")
+                span.glyphicon(class=(article.published)?"glyphicon-pause":"glyphicon-play", title=(article.published)?"Unpublish":"Publish")
+        div.col-sm-1.col-sm-offset-1
+            h4= "Дата"
+            div= article.date
+        div.col-sm-2.col-sm-offset-1
+            h4= "Назва"
+            div= article.title
+        div.col-sm-5.col-sm-offset-1
+            h4= "Опис"
+            div= teaser + '...'
+#articlesAnchor

@@ -1,0 +1,27 @@
+extends layout
+block page 
+  - var menu = 'articles'
+  include includes/menuArticles
+block alert
+  include includes/alert
+block content
+  script.
+    var maxPages= #{maxPages};
+    var srcPages= '/articlesPage/';
+    var anchorPages = '#articles';
+    var offsetPages = 200;  
+    var tag= "#{tag}";
+    var category= "#{category}";
+    var country= "#{country}";
+  script(src='/js/paging.js?v=#{appVersion}')
+  // Ukrexpat Index
+  ins.adsbygoogle(style='display:block', data-ad-client='ca-pub-5925166783691550', data-ad-slot='8510219149', data-ad-format='auto', data-full-width-responsive='true')
+  script.
+    (adsbygoogle = window.adsbygoogle || []).push({});
+  h3.nomobile.contentSection #{title}  
+  .row
+    h4.mobile.contentSection #{title}
+    include includes/gridArticleTags
+    p
+    section.cards
+      include includes/gridArticles

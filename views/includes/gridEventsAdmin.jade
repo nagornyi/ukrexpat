@@ -1,0 +1,28 @@
+each event, index in events
+    div(data-id="#{event._id}", class=(!event.published)?'box row unpublished':'box row')
+        div.col-sm-1.action
+            button.btn.btn-danger.btn-sm.remove.btn-block(type="button")
+                span.glyphicon.glyphicon-remove(title="Remove")
+            button.btn.btn-warning.btn-sm.edit.btn-block(type="button", onclick="window.open('change/#{event.slug}', '_self');")
+                span.glyphicon.glyphicon-edit(title="Change")
+            button.btn.btn-success.btn-sm.publish.btn-block(type="button")
+                span.glyphicon(class=(event.published)?"glyphicon-pause":"glyphicon-play", title=(event.published)?"Unpublish":"Publish")
+        div.col-sm-1.col-sm-offset-1
+            h4= "Початок"
+            div= event.startdate+" "+event.starttime
+        div.col-sm-1.col-sm-offset-1
+            h4= "Завершення"
+            div= event.enddate+" "+event.endtime
+        div.col-sm-2.col-sm-offset-1
+            h4= "Назва"
+            div= event.title
+        div.col-sm-3.col-sm-offset-1
+            h4= "Опис"
+            - var parts = event.enddate.split('.');
+            - var eventDate = new Date(parts[2],parts[1]-1,parts[0]);            
+            - if(eventDate < rightNow){
+                div= "PASSED"
+            - } else {
+                div= event.text.substr(0, 140) + '...'
+            - }
+#eventsAnchor
